@@ -16,13 +16,13 @@ export default function Landing() {
         </div>
 
         <div className="flex gap-20">
-          <a href="#services" class="text-white hover:text-teal-600">
+          <a href="#services" className="text-white hover:text-teal-600">
             <div className="text-lg font-medium">Services</div>
           </a>
-          <a href="#about" class="text-white hover:text-teal-600">
+          <a href="#about" className="text-white hover:text-teal-600">
             <div className="text-lg font-medium">About</div>
           </a>
-          <a href="#contact" class="text-white hover:text-teal-600">
+          <a href="#contact" className="text-white hover:text-teal-600">
             <div className="text-lg font-medium">Contact</div>
           </a>
         </div>
