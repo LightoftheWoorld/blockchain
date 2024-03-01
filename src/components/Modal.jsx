@@ -1,5 +1,5 @@
 import React, { useRef, useState } from "react";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, useNavigation } from "react-router-dom";
 import { useFormik } from "formik";
 import { candidateSchema } from "../schemas";
 import classNames from "classnames";
@@ -9,16 +9,17 @@ import { HiOutlineTrash } from "react-icons/hi";
 import PreviewImage from "./PreviewImage";
 
 const inputStyles =
-  "w-[350px] h-11 text-black py-2 my-2 bg-transparent rounded-md border border-white pl-2";
+  "w-[350px] h-11 text-white py-2 my-2 bg-transparent rounded-md border border-white pl-2";
 
 const Modal = (props) => {
+  // const navigate = useNavigation();
   const { onClose } = props;
   const fileRef = useRef(null);
   // const [fieldValue, setFieldValue] = useState();
   const onSubmit = async (values, actions) => {
     // navigate("/dashboard");
 
-    console.log(values);
+    console.log(1, values);
     console.log(actions);
     await new Promise((resolve) => setTimeout(resolve, 1000));
     actions.resetForm();
@@ -149,7 +150,6 @@ const Modal = (props) => {
                   <HiOutlineTrash />
                 </button>
                 <button
-                  onClick={console.log(values)}
                   disabled={isSubmitting}
                   type="submit"
                   className="bg-teal-600 items-center flex justify-center text-gray-50 rounded-lg w-14 h-8 text-xs font-medium gap-1"

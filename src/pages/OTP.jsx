@@ -75,16 +75,16 @@ const OTP = () => {
               maxLength={1}
             ></input>
             <input
-                type="text"
-                id="otp2"
-                className={classNames(
-                  otp,
-                  errors.otp2 && touched.otp2 ? "input-error" : ""
-                )}
-                onChange={handleChange}
-                onBlur={handleBlur}
-                value={values.otp2}
-                maxLength={1}
+              type="text"
+              id="otp2"
+              className={classNames(
+                otp,
+                errors.otp2 && touched.otp2 ? "input-error" : ""
+              )}
+              onChange={handleChange}
+              onBlur={handleBlur}
+              value={values.otp2}
+              maxLength={1}
             ></input>
             <input
               type="text"
@@ -99,43 +99,42 @@ const OTP = () => {
               maxLength={1}
             ></input>
             <input
-               type="text"
-               id="otp4"
-               className={classNames(
-                 otp,
-                 errors.otp4 && touched.otp4 ? "input-error" : ""
-               )}
-               onChange={handleChange}
-               onBlur={handleBlur}
-               value={values.otp4}
-               maxLength={1}
+              type="text"
+              id="otp4"
+              className={classNames(
+                otp,
+                errors.otp4 && touched.otp4 ? "input-error" : ""
+              )}
+              onChange={handleChange}
+              onBlur={handleBlur}
+              value={values.otp4}
+              maxLength={1}
             >
-               {console.log(values.otp4, 1)}
-              
+              {console.log(values.otp4, 1)}
             </input>
             <input
-                type="text"
-                id="otp5"
-                className={classNames(
-                  otp,
-                  errors.otp5 && touched.otp5 ? "input-error" : ""
-                )}
-                onChange={handleChange}
-                onBlur={handleBlur}
-                value={values.otp5}
-                maxLength={1}
+              type="text"
+              id="otp5"
+              className={classNames(
+                otp,
+                errors.otp5 && touched.otp5 ? "input-error" : ""
+              )}
+              onChange={handleChange}
+              onBlur={handleBlur}
+              value={values.otp5}
+              maxLength={1}
             ></input>
-             <input
-                type="text"
-                id="otp6"
-                className={classNames(
-                  otp,
-                  errors.otp6 && touched.otp6 ? "input-error" : ""
-                )}
-                onChange={handleChange}
-                onBlur={handleBlur}
-                value={values.otp6}
-                maxLength={1}
+            <input
+              type="text"
+              id="otp6"
+              className={classNames(
+                otp,
+                errors.otp6 && touched.otp6 ? "input-error" : ""
+              )}
+              onChange={handleChange}
+              onBlur={handleBlur}
+              value={values.otp6}
+              maxLength={1}
             ></input>
           </div>
 

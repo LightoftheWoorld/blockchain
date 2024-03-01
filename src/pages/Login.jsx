@@ -1,18 +1,47 @@
-import React from "react";
+import React, { useState } from "react";
 import METAMASK_ICON from "../assets/metamask-icon.svg";
 import { Link, useNavigate } from "react-router-dom";
 import { useFormik } from "formik";
 import { signInSchema } from "../schemas";
 import classNames from "classnames";
+import client from "../api/client";
 
 const inputStyles =
-"w-full h-11 text-black py-2 my-2 bg-transparent rounded-md border border-black/40 pl-2"
+  "w-full h-11 text-black py-2 my-2 bg-transparent rounded-md border border-black/40 pl-2";
 const Login = () => {
+  const [userInfo, setUserInfo] = useState(null);
+  const [userToken, setUserToken] = useState(null);
   const navigate = useNavigate();
   const onSubmit = async (values, actions) => {
-    navigate("/dashboard");
+    try {
+      const res = await client.post("organization/signin", {
+        ...values,
+      });
+      console.log(res.data);
 
-    console.log(values);
+      if (res.data.organization.isVerified === true && res.status === 200) {
+        let token = res.data.token;
+        let userinfo = res.data.organization;
+        setUserInfo(userinfo);
+        setUserToken(token);
+        if (token != null && userinfo != null) {
+          localStorage.setItem("token", JSON.stringify(token));
+          localStorage.setItem("userInfo", JSON.stringify(userinfo));
+          navigate("/dashboard", { replace: true });
+        }
+      } else if (
+        res.data.organization.isVerified === false &&
+        res.status === 200
+      ) {
+        let userinfo = res.data.organization;
+        setUserInfo(userinfo);
+        localStorage.setItem("userInfo", JSON.stringify(userinfo));
+        navigate("/organization/otp", { replace: true });
+      }
+    } catch (e) {
+      console.log(e);
+    } finally {
+    }
     console.log(actions);
     await new Promise((resolve) => setTimeout(resolve, 1000));
     actions.resetForm();
@@ -113,6 +142,7 @@ const Login = () => {
         <div className="w-full flex flex-col my-4">
           {/* <Link to={"dashboard"}> */}
           <button
+            disabled={isSubmitting}
             type="submit"
             className="w-full my-2 text-white bg-[#00A699] font-semibold  rounded-md p-2 text-center flex items-center justify-center"
           >
