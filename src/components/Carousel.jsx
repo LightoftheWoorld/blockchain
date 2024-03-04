@@ -15,8 +15,10 @@ const Carousel = (props) => {
     }
   };
   const [currentIndex, setCurrentIndex] = useState(0);
+  const [select, setSelect] = useState(false);
   const selectImage = (index) => {
     setCurrentIndex(index);
+    setSelect()
   };
 
   return (
@@ -28,7 +30,7 @@ const Carousel = (props) => {
       />
       {data.map((item, index) => (
         <div className="flex flex-col items-center">
-          {currentIndex === index ? (
+          {select !== false && currentIndex === index ? (
             <div className="rounded-full cursor-pointer w-32 h-32 flex justify-center items-center bg-teal-600">
               <HiCheck size={70} />
             </div>
@@ -38,7 +40,7 @@ const Carousel = (props) => {
               src={item.image}
               alt="candidate"
               className={`rounded-full cursor-pointer w-32 h-32 ${
-                index === currentIndex ? "border-4 border-teal-600" : ""
+                index === currentIndex ? "bg-teal-600" : ""
               }`}
               onClick={() => selectImage(index)}
             />

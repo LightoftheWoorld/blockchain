@@ -14,7 +14,7 @@ export function VotersWelcome() {
       </p>
       <button
         onClick={() => navigate("info")}
-        className="flex gap-2 items-center w-32 h-14 bg-teal-600 justify-center mt-[220px]"
+        className="flex gap-2 items-center w-32 h-14 bg-teal-600 justify-center mt-[220px] text-base font-bold"
       >
         Next <HiArrowNarrowRight />
       </button>
@@ -34,7 +34,7 @@ export function ElectionInfo() {
         onClick={() => {
           navigate("/voters/vote");
         }}
-        className="flex gap-2 items-center w-32 h-14 bg-teal-600 justify-center mt-[220px]"
+        className="flex gap-2 items-center w-32 h-14 bg-teal-600 justify-center mt-[220px] text-base font-bold"
       >
         Next <HiArrowNarrowRight />
       </button>
@@ -51,7 +51,7 @@ export function Vote() {
       <p className="text-neutral-500 text-[28px] font-normal">
         choose your preferred candidate
       </p>
-      <button className="flex gap-2 items-center w-32 h-14 bg-teal-600 justify-center mt-[120px]">
+      <button className="flex gap-2 items-center w-32 h-14 bg-teal-600 justify-center mt-[120px] text-base font-bold">
         Next <HiArrowNarrowRight />
       </button>
     </div>
