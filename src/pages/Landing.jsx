@@ -1,6 +1,7 @@
 import React from "react";
 import WEB_IMAGE from "../assets/web.png";
 import LOGO from "../assets/logo.png";
+import DASHBOARD_IMAGE from "../assets/dashboard.png";
 import { FaInstagram, FaLinkedin, FaXTwitter } from "react-icons/fa6";
 import { useNavigate } from "react-router-dom";
 
@@ -8,7 +9,7 @@ export default function Landing() {
   const navigate = useNavigate();
 
   return (
-    <div className="w-full h-full bg-black text-white py-10 px-36 scroll-smooth touch-auto">
+    <div className="w-full h-full bg-black text-white py-10 px-36 scroll-smooth touch-auto bg-[radial-gradient(ellipse_at_bottom,_var(--tw-gradient-stops))] from-teal-600 via-black to-black ">
       <div className="flex justify-between h-10 items-center">
         <div className="flex items-center gap-2 px-2 py-3">
           <img src={LOGO} alt="blockvote" className="h-4" />
@@ -42,7 +43,7 @@ export default function Landing() {
           </button>
         </div>
       </div>
-      <div className="flex justify-between py-20 items-center">
+      <div className="flex justify-between py-20 items-center bg-[radial-gradient(circle_at_center,_var(--tw-gradient-stops))] from-cyan-400 via-black to-black">
         <div className="w-[587px]">
           <p className="text-6xl font-bold pb-8">
             <span className="text-teal-600">Secure</span> &{" "}
@@ -63,19 +64,34 @@ export default function Landing() {
         <img src={WEB_IMAGE} alt="web" className="w-[550px] h-[550px]" />
       </div>
 
-      <div className="py-4" id="services">
+      <div className="py-16" id="services">
         <div className="flex flex-col items-center">
           <p className="text-teal-600 text-2xl font-bold">WHAT WE DO</p>
           <p className="text-4xl font-bold">Our mission explained</p>
-          <p className="text-2xl font-normal">
+          <p className="text-2xl font-normal text-center">
             Our mission explained We leverage cutting-edge technology so people
             can vote securely from anywhere and <br />
             administrators can manage elections with ease.
           </p>
         </div>
+        <img src={DASHBOARD_IMAGE} className="py-20 mx-36" alt="dashboard" />
       </div>
 
-      <div className="py-6" id="about">
+      <div className="py-10">
+        <div className="flex flex-col items-center">
+          <p className="text-teal-600 text-2xl font-bold">HOW IT WORKS</p>
+          <p className="text-4xl font-bold text-center">Voting made simple and <br />reliable</p>
+          <p className="text-2xl font-normal text-center">
+            Our mission explained We leverage cutting-edge technology so people
+            can vote securely from anywhere and <br />
+            administrators can manage elections with ease.
+          </p>
+        </div>
+        {/* <img src={DASHBOARD_IMAGE} className="py-20 mx-36" alt="dashboard" /> */}
+      </div>
+
+      {/* <div className="bg-[radial-gradient(ellipse_at_bottom,_var(--tw-gradient-stops))] from-teal-600 via-black to-black"> */}
+      <div className="py-6 " id="about">
         <p className="text-6xl font-medium text-center">
           Everything you need to <br />
           know
@@ -141,6 +157,7 @@ export default function Landing() {
       <p className="py-4 text-center opacity-70 text-zinc-400 text-xl font-normal">
         The future of voting is just a tap away
       </p>
+      {/* </div> */}
     </div>
   );
 }

@@ -78,3 +78,56 @@ export const ELECTION_DATA = [
     status: "Concluded",
   },
 ];
+
+export const Position = [
+  { position: "President" },
+  { position: "Vice President" },
+  { position: "P R O" },
+  { position: "D F R" },
+  { position: "Director of Socials" },
+];
+
+export const Data = [
+  {
+    image: "https://unsplash.it/640/425?image=30",
+    firstname: "stephen",
+    lastname: "dada",
+    course: "SE",
+    position: "President",
+  },
+  {
+    image: "https://unsplash.it/640/425?image=40",
+    firstname: "victor",
+    lastname: "fagbohun",
+    course: "CS",
+    position: "President",
+  },
+  {
+    image: "https://unsplash.it/640/425?image=50",
+    firstname: "taiwo",
+    lastname: "ariyo",
+    course: "CS",
+    position: "President",
+  },
+  {
+    image: "https://unsplash.it/640/425?image=10",
+    firstname: "praise",
+    lastname: "ibe",
+    course: "CS",
+    position: "Vice President",
+  },
+  {
+    image: "https://unsplash.it/640/425?image=20",
+    firstname: "iyunade",
+    lastname: "victor",
+    course: "CS",
+    position: "Vice President",
+  },
+  {
+    image: "https://unsplash.it/640/425?image=60",
+    firstname: "boye",
+    lastname: "odafe",
+    course: "CS",
+    position: "Vice President",
+  },
+];
