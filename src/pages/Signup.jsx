@@ -23,7 +23,10 @@ const Signup = () => {
       console.log(res);
       if (res.data.success && res.status === 200) {
         console.log(res.data);
-        navigate("/organization/otp", { replace: true });
+        navigate("/organization/otp", {
+          replace: true,
+          state: { username: values.email, password: values.password },
+        });
       }
     } catch (e) {
       console.log(e);
@@ -125,7 +128,7 @@ const Signup = () => {
               errors.lastname && touched.lastname ? "input-error" : ""
             )}
           />
-           <div className="flex justify-between text-[13px]">
+          <div className="flex justify-between text-[13px]">
             <p className="text-black  font-semibold">Organization</p>
             {errors.name && touched.name && (
               <p className="error text-red-600">{errors.name}</p>

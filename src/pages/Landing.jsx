@@ -2,6 +2,7 @@ import React from "react";
 import WEB_IMAGE from "../assets/web.png";
 import LOGO from "../assets/logo.png";
 import DASHBOARD_IMAGE from "../assets/dashboard.png";
+import DASHBOARD_IMG from "../assets/img.png";
 import { FaInstagram, FaLinkedin, FaXTwitter } from "react-icons/fa6";
 import { useNavigate } from "react-router-dom";
 
@@ -80,12 +81,59 @@ export default function Landing() {
       <div className="py-10">
         <div className="flex flex-col items-center">
           <p className="text-teal-600 text-2xl font-bold">HOW IT WORKS</p>
-          <p className="text-4xl font-bold text-center">Voting made simple and <br />reliable</p>
-          <p className="text-2xl font-normal text-center">
-            Our mission explained We leverage cutting-edge technology so people
-            can vote securely from anywhere and <br />
-            administrators can manage elections with ease.
+          <p className="text-4xl font-bold text-center">
+            Voting made simple and <br />
+            reliable
           </p>
+          <p className="text-2xl font-normal text-center">
+            A blockchain voting system provides a decentralized, secure, and
+            transparent platform <br />
+            for conducting elections.
+          </p>
+        </div>
+        <div className="flex justify-between mt-[81px]">
+          <div>
+            <div className="flex gap-4 m-[40px]">
+              <div className="bg-teal-600 flex flex-col justify-center items-center h-12 w-12 rounded-xl">
+                <p className="text-2xl font-bold">1</p>
+              </div>
+              <div>
+                <p className="text-2xl font-medium mb-[10px]">Get App</p>
+                <p className="w-96 text-zinc-400 text-xl font-normal">
+                  BlockVote's platform provides essential features that empower
+                  users to engage in democratic process, fostering a safe and
+                  secured ballot submission without disclosing voter identity.
+                </p>
+              </div>
+            </div>
+            <div className="flex gap-4 m-[40px]">
+              <div className="bg-teal-600 flex flex-col justify-center items-center h-12 w-12 rounded-xl">
+                <p className="text-2xl font-bold">2</p>
+              </div>
+              <div>
+                <p className="text-2xl font-medium mb-[10px]">Accessibility</p>
+                <p className="w-96 text-zinc-400 text-xl font-normal">
+                  Blockchain voting systems can improve accessibility by
+                  enabling remote voting through digital devices such as
+                  smartphones or computers.
+                </p>
+              </div>
+            </div>
+            <div className="flex gap-4 m-[40px]">
+              <div className="bg-teal-600 flex flex-col justify-center items-center h-12 w-12 rounded-xl">
+                <p className="text-2xl font-bold">3</p>
+              </div>
+              <div>
+                <p className="text-2xl font-medium mb-[10px]">Transparency</p>
+                <p className="w-96 text-zinc-400 text-xl font-normal">
+                  Every transaction, from the casting of votes to the tallying
+                  of results, is recorded on the blockchain and is visible to
+                  all participants.
+                </p>
+              </div>
+            </div>
+          </div>
+          <img src={DASHBOARD_IMG} alt="blockvote" className="" />
         </div>
         {/* <img src={DASHBOARD_IMAGE} className="py-20 mx-36" alt="dashboard" /> */}
       </div>

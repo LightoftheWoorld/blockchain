@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import METAMASK_ICON from "../assets/metamask-icon.svg";
 import { Link, useNavigate } from "react-router-dom";
 import { useFormik } from "formik";
@@ -8,9 +8,11 @@ import client from "../api/client";
 
 const inputStyles =
   "w-full h-11 text-black py-2 my-2 bg-transparent rounded-md border border-black/40 pl-2";
-const Login = () => {
+const Login = (props) => {
+  const {onLogin} = props
   const [userInfo, setUserInfo] = useState(null);
   const [userToken, setUserToken] = useState(null);
+  const [rememberMe, setRememberMe] = useState(false);
   const navigate = useNavigate();
   const onSubmit = async (values, actions) => {
     try {
@@ -21,13 +23,17 @@ const Login = () => {
 
       if (res.data.organization.isVerified === true && res.status === 200) {
         let token = res.data.token;
+        let refreshToken = res.data.refreshToken;
         let userinfo = res.data.organization;
         setUserInfo(userinfo);
         setUserToken(token);
         if (token != null && userinfo != null) {
           localStorage.setItem("token", JSON.stringify(token));
           localStorage.setItem("userInfo", JSON.stringify(userinfo));
-          navigate("/dashboard", { replace: true });
+          localStorage.setItem("refreshToken", JSON.stringify(refreshToken));
+          localStorage.setItem("rememberMe", JSON.stringify(rememberMe));
+          onLogin(true);
+          navigate("/dashboard", { replace: true, });
         }
       } else if (
         res.data.organization.isVerified === false &&
@@ -47,6 +53,13 @@ const Login = () => {
     actions.resetForm();
   };
 
+  useEffect(() => {
+    const rem = localStorage.getItem("rememberMe");
+    if (rem === "true") {
+      console.log(rem);
+      navigate("/dashboard", { replace: true });
+    }
+  }, []);
   const {
     values,
     errors,
@@ -127,9 +140,16 @@ const Login = () => {
           />
         </div>
 
-        <div className="w-full flex items-center justify-between">
+        <div className="w-full flex items-center justify-between mt-4">
           <div className="w-full flex items-center">
-            <input type="checkbox" className="w-4 h-4 mr-2" />
+            <input
+              checked={rememberMe}
+              onClick={() => setRememberMe(!rememberMe)}
+              type="checkbox"
+              className={`w-4 h-4 mr-2 ${
+                rememberMe === true && "bg-teal-600 text-teal-600"
+              }`}
+            />
             <p className="text-sm">Remember Me</p>
           </div>
           <Link to="forgotpassword">

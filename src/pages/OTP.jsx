@@ -1,25 +1,66 @@
 import classNames from "classnames";
 import { useFormik } from "formik";
-import React from "react";
-import { useNavigate } from "react-router-dom";
+import React, { useState } from "react";
+import { useLocation, useNavigate } from "react-router-dom";
 import { otpSchema } from "../schemas";
+import client from "../api/client";
 
 const otp =
   "w-16 h-16 flex flex-col items-center justify-center text-center px-5 outline-none rounded-xl border border-gray-200 text-lg bg-white focus:bg-gray-50 focus:ring-1 ring-[#00A699] uppercase";
 
 const OTP = () => {
-  const onSubmit = async (values, actions) => {
-    navigate("/otp", { replace: true });
+  const location = useLocation();
+  const { username, password } = location.state;
+  const [userInfo, setUserInfo] = useState(null);
+  const [userToken, setUserToken] = useState(null);
+  const headers = {
+    "Content-Type": "application/json",
+  };
+  const Data = {
+    email: username,
+    password: password,
+  };
+  console.log(username);
+  console.log(password);
 
-    console.log(values);
+  const onSubmit = async (values, actions) => {
+    const otpCode =
+      values.otp1 + values.otp2 + values.otp3 + values.otp4 + values.otp5;
+
+    try {
+      const res = await client.post("organization/verifyUser", {
+        token: otpCode,
+      });
+      if (res.status === 200 && res.data.success === true) {
+        try {
+          const res = await client.post("organization/signin", Data, {
+            headers: headers
+          });
+          console.log(res.data);
+
+          if (res.status === 200) {
+            let token = res.data.token;
+            let refreshToken = res.data.refreshToken;
+            let userinfo = res.data.organization;
+            setUserInfo(userinfo);
+            setUserToken(token);
+            if (token != null && userinfo != null) {
+              localStorage.setItem("token", JSON.stringify(token));
+              localStorage.setItem("refreshToken", JSON.stringify(refreshToken));
+              localStorage.setItem("userInfo", JSON.stringify(userinfo));
+              navigate("/dashboard", { replace: true });
+            }
+          }
+        } catch (e) {
+          console.log(e);
+        } finally {
+        }
+      }
+    } catch (error) {}
+    
     console.log(actions);
     await new Promise((resolve) => setTimeout(resolve, 1000));
-    actions.resetForm();
   };
-  // const [otp, setOtp] = useState("");
-  // const [code, setCode] = useState("");
-
-  // const handleChange = (code) => setCode(code);
 
   const {
     values,
@@ -36,7 +77,6 @@ const OTP = () => {
       otp3: "",
       otp4: "",
       otp5: "",
-      otp6: "",
     },
     validationSchema: otpSchema,
     onSubmit,
@@ -67,7 +107,7 @@ const OTP = () => {
               id="otp1"
               className={classNames(
                 otp,
-                errors.otp1 && touched.otp1 ? "input-error" : ""
+                errors.otp1 && touched.otp1 && "border border-red-600"
               )}
               onChange={handleChange}
               onBlur={handleBlur}
@@ -79,7 +119,7 @@ const OTP = () => {
               id="otp2"
               className={classNames(
                 otp,
-                errors.otp2 && touched.otp2 ? "input-error" : ""
+                errors.otp2 && touched.otp2 && "border border-red-600"
               )}
               onChange={handleChange}
               onBlur={handleBlur}
@@ -91,7 +131,7 @@ const OTP = () => {
               id="otp3"
               className={classNames(
                 otp,
-                errors.otp3 && touched.otp3 ? "input-error" : ""
+                errors.otp3 && touched.otp3 && "border border-red-600"
               )}
               onChange={handleChange}
               onBlur={handleBlur}
@@ -103,37 +143,25 @@ const OTP = () => {
               id="otp4"
               className={classNames(
                 otp,
-                errors.otp4 && touched.otp4 ? "input-error" : ""
+                errors.otp4 && touched.otp4 && "border border-red-600"
               )}
               onChange={handleChange}
               onBlur={handleBlur}
               value={values.otp4}
               maxLength={1}
             >
-              {console.log(values.otp4, 1)}
+              {console.log(values.otp4)}
             </input>
             <input
               type="text"
               id="otp5"
               className={classNames(
                 otp,
-                errors.otp5 && touched.otp5 ? "input-error" : ""
+                errors.otp5 && touched.otp5 && "border border-red-600"
               )}
               onChange={handleChange}
               onBlur={handleBlur}
               value={values.otp5}
-              maxLength={1}
-            ></input>
-            <input
-              type="text"
-              id="otp6"
-              className={classNames(
-                otp,
-                errors.otp6 && touched.otp6 ? "input-error" : ""
-              )}
-              onChange={handleChange}
-              onBlur={handleBlur}
-              value={values.otp6}
               maxLength={1}
             ></input>
           </div>

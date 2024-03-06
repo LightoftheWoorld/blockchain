@@ -38,12 +38,11 @@ export const signUpSchema = yup.object().shape({
 });
 
 export const otpSchema = yup.object().shape({
-  otp1: yup.number().min(1, "Input Otp").max(1).required("Required"),
-  otp2: yup.number().min(1, "Input Otp").max(1).required("Required"),
-  otp3: yup.number().min(1, "Input Otp").max(1).required("Required"),
-  otp4: yup.number().min(1, "Input Otp").max(1).required("Required"),
-  otp5: yup.number().min(1, "Input Otp").max(1).required("Required"),
-  otp6: yup.number().min(1, "Input Otp").max(1).required("Required"),
+  otp1: yup.number("Must be an Integer").required("Required"),
+  otp2: yup.number("Must be an Integer").required("Required"),
+  otp3: yup.number("Must be an Integer").required("Required"),
+  otp4: yup.number("Must be an Integer").required("Required"),
+  otp5: yup.number("Must be an Integer").required("Required"),
 });
 
 export const signInSchema = yup.object().shape({

@@ -1,13 +1,21 @@
 import React from "react";
 import LOGO from "../../assets/logo.png";
 import classNames from 'classnames'
-import { Link, useLocation } from 'react-router-dom'
+import { Link, useLocation, useNavigate } from 'react-router-dom'
 import { DASHBOARD_SIDEBAR_BOTTOM_LINKS, DASHBOARD_SIDEBAR_LINKS } from "../../lib/const/navigation";
 import { HiOutlineLogout } from 'react-icons/hi'
 
 const linkClass =
 	'flex items-center gap-4 font-light w-48 h-12 px-5 py-5 hover:bg-neutral-700 hover:no-underline active:bg-neutral-600 rounded-3xl text-base'
 export default function Sidebar() {
+	const navigate = useNavigate()
+	const Logout = () => {
+		localStorage.removeItem("userInfo")
+		localStorage.removeItem("token")
+		localStorage.removeItem("refreshToken")
+		localStorage.removeItem("rememberMe")
+		navigate("/", {replace: true})
+	}
   return (
     <div className="text-white bg-[#060606] p-3 flex flex-col w-60">
       <div className="flex items-center gap-2 px-2 py-3">
@@ -24,12 +32,10 @@ export default function Sidebar() {
 				{DASHBOARD_SIDEBAR_BOTTOM_LINKS.map((link) => (
 					<SidebarLink key={link.key} link={link} />
 				))}
-				<div className={classNames(linkClass, 'cursor-pointer text-red-500')}>
-					<span className="text-xl">
+				<button className={classNames(linkClass, 'cursor-pointer text-red-500 text-xl')} onClick={Logout}>
 						<HiOutlineLogout />
-					</span>
 					Logout
-				</div>
+				</button>
 			</div>
 		</div>
   );

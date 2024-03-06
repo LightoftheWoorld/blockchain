@@ -1,15 +1,18 @@
 import React from "react";
+import { format } from 'date-fns';
 import { HiOutlineSave } from "react-icons/hi";
 import { ELECTION_DATA } from "../data/dummydata";
 import classNames from "classnames";
 
 export default function Overview() {
+  const today = new Date();
+  const formattedDate = format(today, 'EEE dd MMM, yyy')
   return (
     <div className="text-white">
       <div className="flex justify-between items-center">
         <div className="flex flex-col">
           <p className="text-sm text-neutral-500 tracking-tight font-normal">
-            Mon 29 Jan, 2024
+            {formattedDate}
           </p>
           <h1 className="text-3xl font-medium tracking-tight">Overview</h1>
         </div>
